@@ -10,7 +10,6 @@
     border-radius: 2px;
     p {
       height: 29px;
-  
       font-family: "Inconsolata";
       font-style: normal;
       font-weight: bold;
@@ -50,22 +49,18 @@
   
       width:  calc(100% - 30px);
       height: 52px;
-  
       background: #2c0c23;
-  
       border-radius: 3px;
       p {
+        display: flex;
+        align-items: center;
+
         color: #ffffff;
         font-family: "Inconsolata";
         font-style: normal;
         font-weight: 700;
         font-size: 16px;
         line-height: 32px;
-  
-        display: flex;
-        align-items: center;
-  
-        color: #ffffff;
       }
       span {
         justify-self: flex-end;

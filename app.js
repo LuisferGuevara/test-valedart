@@ -2,26 +2,17 @@ const main$$ = document.querySelector("#main")
 const boxForContent$$ = document.querySelector("#container");
 const boxForFooter$$ = document.querySelector("#footer");
 
-const renderLogo = () => {
-  const divLogo$$ = document.createElement("div");
-  const logo$$ = document.createElement("img");
-
-  divLogo$$.classList.add("logo--box");
-  logo$$.classList.add("logo--img");
-
-  // if(window.innerWidth < 767){
-  //   logo$$.src = "./assets/images/SK Iso.png";
-  // }else {
-  //   logo$$.src = "./assets/images/Vector.png";
-  // }
-  logo$$.src = window.innerWidth < 767 ? "./assets/images/logo-mobile.svg" : "./assets/images/tablet.png";
-  divLogo$$.appendChild(logo$$);
-  boxForContent$$.appendChild(divLogo$$);
-};
 
 let codeGenerator = {};
+const dates = ["2016", "2017", "2018", "2019", "2020", "2021"];
+const alternatives = [
+  "Segaría a navaja",
+  "Rechazaría un cachopo",
+  "Renunciaría a mis tierras",
+  "Regalaría una ternera",
+];
 
-const pass1 = () => {
+const step1 = () => {
   const div$$ = document.createElement("div");
   const paragraphIntro$$ = document.createElement("p");
   const h1$$ = document.createElement("h1");
@@ -37,8 +28,6 @@ const pass1 = () => {
   div$$.appendChild(paragraphIntro$$);
   div$$.appendChild(h1$$);
   div$$.appendChild(h2$$);
-
-  const dates = ["2016", "2017", "2018", "2019", "2020", "2021"];
 
   const wrapper$$ = document.createElement("div");
   const p$$ = document.createElement("p");
@@ -70,7 +59,6 @@ const pass1 = () => {
     input$$.setAttribute("type", "radio");
     input$$.setAttribute("name", "option");
     input$$.value = dates[i];
-    label$$.setAttribute("for", dates[i]);
     label$$.textContent = dates[i];
 
     if (i === 0) {
@@ -93,22 +81,20 @@ const pass1 = () => {
   div$$.appendChild(wrapper$$);
   boxForContent$$.appendChild(div$$);
 
-
-
   const checkInputs$$ = document.querySelectorAll("input");
+
   button$$.addEventListener("click", () => {
     for (const checkInput of checkInputs$$) {
       if (checkInput.checked == true) {
         codeGenerator.stepOne = checkInput.value;
       }
     }
-
     boxForContent$$.removeChild(div$$);
-    pass2();
+    step2();
   });
 };
 
-const pass2 = () => {
+const step2 = () => {
   const div$$ = document.createElement("div");
   const paragraphIntro$$ = document.createElement("p");
   const h1$$ = document.createElement("h1");
@@ -120,14 +106,7 @@ const pass2 = () => {
 
   div$$.appendChild(paragraphIntro$$);
   div$$.appendChild(h1$$);
-
-  const alternatives = [
-    "Segaría a navaja",
-    "Rechazaría un cachopo",
-    "Renunciaría a mis tierras",
-    "Regalaría una ternera",
-  ];
-
+  
   const wrapper$$ = document.createElement("div");
   const p$$ = document.createElement("p");
   const button$$ = document.createElement("button");
@@ -157,7 +136,6 @@ const pass2 = () => {
     input$$.setAttribute("type", "radio");
     input$$.setAttribute("name", "option");
     input$$.value = alternatives[i];
-    label$$.setAttribute("for", alternatives[i]);
     label$$.textContent = alternatives[i];
 
     if (i === 0) {
@@ -177,24 +155,23 @@ const pass2 = () => {
   div$$.appendChild(wrapper$$);
   boxForContent$$.appendChild(div$$);
 
-
   const checkInputs$$ = document.querySelectorAll("input");
+
   button$$.addEventListener("click", () => {
     for (const checkInput of checkInputs$$) {
       if (checkInput.checked == true) {
         codeGenerator.stepTwo = checkInput.value;
       }
     }
-
     boxForContent$$.removeChild(div$$);
     generateCode();
-    pass2_2();
+    lastStep();
   });
 };
 
 const generateCode = () => {
   let firstSlice = codeGenerator.stepOne.slice(-2).split("");
-  let first = firstSlice.reduce((a, b) => Number(a) + Number(b), 0);
+  let first = Number(firstSlice[0]) + Number(firstSlice[1]); 
   const regex = /[b-zB-Z0-9]/g;
   let second = codeGenerator.stepTwo.match(regex);
   second = second.join("").slice(-4).toUpperCase();
@@ -204,7 +181,7 @@ const generateCode = () => {
   codeGenerator.finalResult = result;
 };
 
-const pass2_2 = () => {
+const lastStep = () => {
   const div$$ = document.createElement("div");
   const h1$$ = document.createElement("h1");
 
@@ -212,6 +189,7 @@ const pass2_2 = () => {
   h1$$.textContent = "¡ENHORABUENA!";
 
   div$$.appendChild(h1$$);
+
   const wrapper$$ = document.createElement("div");
   const p$$ = document.createElement("p");
   const p2$$ = document.createElement("p");
@@ -268,13 +246,13 @@ const pass2_2 = () => {
   div$$.appendChild(wrapper$$);
   boxForContent$$.appendChild(div$$);
 
-  let minutes = 1;
+  let minutes = 20;
   let seconds = 0;
 
   let interval = setInterval(function () {
     if (minutes > 0 && seconds === 0) {
       minutes -= 1;
-      seconds = 5;
+      seconds = 59;
     } else if (minutes === 0 && seconds === 0) {
       clearInterval(interval);
 
@@ -289,9 +267,10 @@ const pass2_2 = () => {
         Object.keys(generateCode).forEach((element) => {
           delete generateCode[element];
         });
-        pass1();
+        step1();
       });
       return;
+
     } else {
       seconds--;
     }
@@ -323,14 +302,11 @@ const renderFooter = () => {
     footer$$.appendChild(footerParagraph2$$);
     boxForFooter$$.appendChild(footer$$)
     main$$.appendChild(boxForFooter$$);
-    // document.body.appendChild(footer$$);
   };
 
-  renderFooter();
-
-const init = () => {
-  // renderLogo();
-
-  pass1();
+  
+  const init = () => {
+    renderFooter();
+    step1();
 };
 window.onload = init;
