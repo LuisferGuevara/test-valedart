@@ -1,4 +1,6 @@
-const main$$ = document.querySelector("#container");
+const main$$ = document.querySelector("#main")
+const boxForContent$$ = document.querySelector("#container");
+const boxForFooter$$ = document.querySelector("#footer");
 
 const renderLogo = () => {
   const divLogo$$ = document.createElement("div");
@@ -9,24 +11,7 @@ const renderLogo = () => {
   Logo$$.src = "./assets/images/SK Iso.png";
 
   divLogo$$.appendChild(Logo$$);
-  main$$.appendChild(divLogo$$);
-};
-
-const renderFooter = () => {
-  const footer$$ = document.createElement("footer");
-  const footerParagraph$$ = document.createElement("p");
-  const footerParagraph2$$ = document.createElement("p");
-  const footerBasesLink$$$ = document.createElement("a");
-
-  footerParagraph$$.textContent = "2016-2021 Siroko Solutions S.L.";
-  footerParagraph2$$.textContent = "Todos los derechos reservados. ";
-  footerBasesLink$$$.textContent = "Ver bases";
-
-  footerParagraph2$$.appendChild(footerBasesLink$$$);
-  footer$$.appendChild(footerParagraph$$);
-  footer$$.appendChild(footerParagraph2$$);
-  main$$.appendChild(footer$$)
-//   document.body.appendChild(footer$$);
+  boxForContent$$.appendChild(divLogo$$);
 };
 
 let codeGenerator = {};
@@ -37,8 +22,8 @@ const pass1 = () => {
   const h1$$ = document.createElement("h1");
   const h2$$ = document.createElement("h2");
 
-  div$$.classList.add("component--container")
-  paragraphIntro$$.classList.add("paragraph--intro")
+  div$$.classList.add("component--container");
+  paragraphIntro$$.classList.add("paragraph--intro");
   paragraphIntro$$.textContent = "paso 1 de 2";
   h1$$.textContent = "¡VAMOS ALLÁ!";
   h2$$.textContent =
@@ -86,8 +71,8 @@ const pass1 = () => {
     if (i === 0) {
       input$$.checked = true;
     }
-    if (input$$.checked == true){
-        label$$.classList.add("checked")
+    if (input$$.checked == true) {
+      label$$.classList.add("checked");
     }
 
     label$$.appendChild(input$$);
@@ -101,7 +86,9 @@ const pass1 = () => {
   button$$.appendChild(arrowDiv$$);
   wrapper$$.appendChild(button$$);
   div$$.appendChild(wrapper$$);
-  main$$.appendChild(div$$);
+  boxForContent$$.appendChild(div$$);
+
+
 
   const checkInputs$$ = document.querySelectorAll("input");
   button$$.addEventListener("click", () => {
@@ -111,7 +98,7 @@ const pass1 = () => {
       }
     }
 
-    main$$.removeChild(div$$);
+    boxForContent$$.removeChild(div$$);
     pass2();
   });
 };
@@ -121,7 +108,8 @@ const pass2 = () => {
   const paragraphIntro$$ = document.createElement("p");
   const h1$$ = document.createElement("h1");
 
-  div$$.classList.add("component--container")
+  div$$.classList.add("component--container");
+  paragraphIntro$$.classList.add("paragraph--intro");
   paragraphIntro$$.textContent = "paso 2 de 2";
   h1$$.textContent = "¡VAMOS, UNA MÁS!";
 
@@ -182,7 +170,8 @@ const pass2 = () => {
   button$$.appendChild(arrowDiv$$);
   wrapper$$.appendChild(button$$);
   div$$.appendChild(wrapper$$);
-  main$$.appendChild(div$$);
+  boxForContent$$.appendChild(div$$);
+
 
   const checkInputs$$ = document.querySelectorAll("input");
   button$$.addEventListener("click", () => {
@@ -192,7 +181,7 @@ const pass2 = () => {
       }
     }
 
-    main$$.removeChild(div$$);
+    boxForContent$$.removeChild(div$$);
     generateCode();
     pass2_2();
   });
@@ -214,7 +203,7 @@ const pass2_2 = () => {
   const div$$ = document.createElement("div");
   const h1$$ = document.createElement("h1");
 
-  div$$.classList.add("component--container")
+  div$$.classList.add("component--container");
   h1$$.textContent = "¡ENHORABUENA!";
 
   div$$.appendChild(h1$$);
@@ -232,16 +221,21 @@ const pass2_2 = () => {
 
   const timerDiv$$ = document.createElement("div");
   const timer$$ = document.createElement("p");
+  const timerImg$$ = document.createElement("img");
 
   wrapper$$.classList.add("form--wrapper");
   p$$.classList.add("form--title");
   p$$.textContent = "Lo prometido es deuda";
+  p2$$.classList.add("paragraph");
   p2$$.textContent =
     "Introduce este código en tu próxima compra para conseguir tu premio. ¡Disponible durante 20 minutos!";
   codeDiv$$.classList.add("code--div");
   codeText$$.textContent = codeGenerator.finalResult;
   copyButton$$.textContent = "Copiar";
   timerDiv$$.classList.add("timer--div");
+  timerImg$$.classList.add("timer--img");
+  timerImg$$.src = "./assets/images/icons8-alarm-on-24.png";
+  timerImg$$.alt = "timer";
   timer$$.textContent = "20:00";
   button$$.classList.add("form--button");
   buttonText$$.textContent = "Ir a siroko.com";
@@ -260,60 +254,78 @@ const pass2_2 = () => {
   wrapper$$.appendChild(codeDiv$$);
   wrapper$$.appendChild(p2$$);
   arrowDiv$$.appendChild(arrow$$);
+  timerDiv$$.appendChild(timerImg$$);
   timerDiv$$.appendChild(timer$$);
   wrapper$$.appendChild(timerDiv$$);
   button$$.appendChild(buttonText$$);
   button$$.appendChild(arrowDiv$$);
   wrapper$$.appendChild(button$$);
   div$$.appendChild(wrapper$$);
-  main$$.appendChild(div$$);
+  boxForContent$$.appendChild(div$$);
 
-  let minutes = 20;
+  let minutes = 1;
   let seconds = 0;
 
   let interval = setInterval(function () {
     if (minutes > 0 && seconds === 0) {
       minutes -= 1;
-      seconds = 59;
+      seconds = 5;
     } else if (minutes === 0 && seconds === 0) {
-
       clearInterval(interval);
-      timer$$.textContent = "";
-
-      const timerImg$$ = document.createElement("img");
-      timerImg$$.src = "./assets/images/stopwatch-svgrepo-com.svg";
-      timerImg$$.alt = "timer";
-      timer$$.textContent = "Código caducado";
-      timerDiv$$.appendChild(timerImg$$);
 
       const span$$ = document.createElement("span");
+
       timerDiv$$.appendChild(span$$);
-      span$$.textContent = "Reiniciar";
+      span$$.textContent = "Reiniciar.";
+      timer$$.textContent = "Código caducado";
 
       span$$.addEventListener("click", () => {
-        main$$.removeChild(div$$);
+        boxForContent$$.removeChild(div$$);
         Object.keys(generateCode).forEach((element) => {
           delete generateCode[element];
         });
         pass1();
       });
+      return;
     } else {
       seconds--;
     }
 
     if (minutes < 10) {
-      timer$$.classList.add("red");
+      timerDiv$$.classList.add("red");
     }
 
     timer$$.textContent = `${minutes.toString().padStart(2, "00")}:${seconds
       .toString()
       .padStart(2, "00")}`;
   }, 1000);
+ 
 };
+
+
+const renderFooter = () => {
+    const footer$$ = document.createElement("footer");
+    const footerParagraph$$ = document.createElement("p");
+    const footerParagraph2$$ = document.createElement("p");
+    const footerBasesLink$$$ = document.createElement("a");
+
+    footerParagraph$$.textContent = "2016-2021 Siroko Solutions S.L.";
+    footerParagraph2$$.textContent = "Todos los derechos reservados. ";
+    footerBasesLink$$$.textContent = "Ver bases.";
+
+    footerParagraph2$$.appendChild(footerBasesLink$$$);
+    footer$$.appendChild(footerParagraph$$);
+    footer$$.appendChild(footerParagraph2$$);
+    boxForFooter$$.appendChild(footer$$)
+    main$$.appendChild(boxForFooter$$);
+    // document.body.appendChild(footer$$);
+  };
+
+  renderFooter();
 
 const init = () => {
   renderLogo();
-  renderFooter();
+
   pass1();
 };
 window.onload = init;

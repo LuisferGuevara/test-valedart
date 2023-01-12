@@ -7,26 +7,23 @@ footer {
   font-weight: 400;
   font-family: "Inconsolata";
   line-height: 1.024rem;
-  width: 100%;
-  height: 98px;
-  position: fixed;
-  bottom: -60px;
+  bottom: 0;
+  height: 48px;
   justify-content: center;
   align-items: center;
+  margin-top: 28px;
   padding: 25px;
   gap: 10px;
 }
 footer a {
   color: #FFFFFF;
-}
-footer svg {
-  filter: invert(100%) sepia(15%) saturate(7442%) hue-rotate(180deg) brightness(108%) contrast(116%);
+  text-decoration: underline;
 }
 
 .logo--box {
-  padding: 25px;
+  padding: 25px 0;
   height: 32px;
-  width: 28px;
+  width: 98px;
   display: flex;
 }
 .logo--box img {
@@ -103,9 +100,12 @@ footer svg {
   border: none;
 }
 .component--container .form--wrapper form fieldset label {
+  cursor: pointer;
   display: flex;
   flex-direction: row-reverse;
   background-color: #44293c;
+  position: relative;
+  z-index: 2;
   justify-content: flex-end;
   align-items: center;
   padding: 12px;
@@ -120,10 +120,8 @@ footer svg {
   line-height: 18px;
   color: #ffffff;
 }
-.component--container .form--wrapper form fieldset label:checked {
-  background-color: #c92f58;
-}
 .component--container .form--wrapper form fieldset label input[type=radio] {
+  cursor: pointer;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -150,7 +148,19 @@ footer svg {
 .component--container .form--wrapper form fieldset label input[type=radio]:checked::before {
   transform: scale(1);
 }
+.component--container .form--wrapper form fieldset label input[type=radio]:checked::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #c92f58;
+  z-index: -1;
+}
 .component--container .form--wrapper .form--button {
+  border: none;
+  cursor: pointer;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -162,7 +172,8 @@ footer svg {
   background: #339b95;
   border-radius: 4px;
 }
-.component--container .form--wrapper .form--button p {
+.component--container .form--wrapper .form--button p,
+.component--container .form--wrapper .form--button a {
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
@@ -172,8 +183,8 @@ footer svg {
   color: #ffffff;
 }
 .component--container .form--wrapper .form--button .form--button__arrow-div {
-  height: 10.5;
-  width: 28px;
+  padding-top: 6px;
+  width: 25px;
 }
 .component--container .form--wrapper .form--button .form--button__arrow-div .form--button__arrow-img {
   height: 100%;
@@ -183,22 +194,106 @@ footer svg {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(137deg) brightness(103%) contrast(101%);
 }
 
+.code--div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 95%;
+  height: 49px;
+  background: linear-gradient(270deg, #ffffff 0%, #bdbdbd 100%);
+  border-radius: 2px;
+}
+.code--div p {
+  height: 29px;
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 29px;
+  color: #000000;
+}
+.code--div button {
+  width: 84px;
+  height: 32px;
+  text-align: center;
+  cursor: pointer;
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  border: 2px solid black;
+  color: #000000;
+}
+
+.form--wrapper .paragraph {
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+.form--wrapper .timer--div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 10px;
+  width: 90%;
+  height: 52px;
+  background: #2c0c23;
+  border-radius: 3px;
+}
+.form--wrapper .timer--div p {
+  color: #ffffff;
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+.form--wrapper .timer--div span {
+  justify-self: flex-end;
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration: underline;
+  color: #ffffff;
+  cursor: pointer;
+}
+.form--wrapper .timer--div .timer--img {
+  height: 28px;
+  width: 28px;
+}
+.form--wrapper .red {
+  background-color: #c51414;
+}
+
 @font-face {
   font-family: "Liberator";
-  src: url(../assets/fonts/LiberatorSIROKO-Heavy.ttf), url(../assets/fonts/LiberatorSIROKO-Light.ttf), url(../assets/fonts/LiberatorSIROKO-Medium.ttf), url(../assets/fonts/LiberatorSIROKO-Outline.ttf), url(../assets/fonts/LiberatorSIROKO-Thin.ttf);
+  src: url(../../assets/fonts/LiberatorSIROKO-Heavy.ttf), url(../../assets/fonts/LiberatorSIROKO-Light.ttf), url(../../assets/fonts/LiberatorSIROKO-Medium.ttf), url(../../assets/fonts/LiberatorSIROKO-Outline.ttf), url(../../assets/fonts/LiberatorSIROKO-Thin.ttf);
 }
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: aqua;
+  background-image: url(../../assets/images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   position: relative;
 }
 
-#container {
-  background-color: green;
-}
-
-.code--div {
-  background-color: orange;
+#main {
+  height: 100%;
+  min-height: 806px;
+  width: 100vw;
+  position: relative;
 }/*# sourceMappingURL=styles.css.map */

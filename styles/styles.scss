@@ -1,29 +1,45 @@
 @import "./_footer.scss";
 @import "./_logo.scss";
 @import "./_pass1and2.scss";
+@import "./pass2-2_3.scss";
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter:wght@700&display=swap");
 @font-face {
   font-family: "Liberator";
-  src: url(../assets/fonts/LiberatorSIROKO-Heavy.ttf),
-    url(../assets/fonts/LiberatorSIROKO-Light.ttf), url(../assets/fonts/LiberatorSIROKO-Medium.ttf),
-    url(../assets/fonts/LiberatorSIROKO-Outline.ttf), url(../assets/fonts/LiberatorSIROKO-Thin.ttf);
+  src: url(../../assets/fonts/LiberatorSIROKO-Heavy.ttf), url(../../assets/fonts/LiberatorSIROKO-Light.ttf), url(../../assets/fonts/LiberatorSIROKO-Medium.ttf), url(../../assets/fonts/LiberatorSIROKO-Outline.ttf), url(../../assets/fonts/LiberatorSIROKO-Thin.ttf);
 }
 
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: aqua;
-  // background-image: url(../assets/images/background.jpg);
+  background-image: url(../../assets/images/background.jpg);
+background-size: cover;
+background-repeat: no-repeat;
   position: relative;
 
 
+
+}
+#main{
+// background-color: olive;
+  height: 100%;
+  min-height: 806px;
+  width: 100vw;
+  position: relative;
 }
 #container {
-  background-color: green;
+  // background-color: aqua;
+
+
+}
+#footer{
+// background-color: red;
+// position: absolute;
+
+
+
+
 }
 
-.code--div {
-  background-color: orange;
-}
+
