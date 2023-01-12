@@ -38,7 +38,7 @@ const pass1 = () => {
 
   paragraphIntro$$.textContent = "paso 1 de 2";
   h1$$.textContent = "¡VAMOS ALLÁ!";
-  h2$$.classList.add("main--paragraph");
+  h2$$.classList.add("first--paragraph");
   h2$$.textContent =
     "Has llegado hasta el test de Siroko. Responde las sigueinte preguntas y genera tu código premiado a medida";
 
@@ -62,6 +62,8 @@ const pass1 = () => {
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
+  arrow$$.src = "./assets/images/arrow-right-thin.png";
+  arrow$$.alt = "arrow-right";
 
   const datesList$$ = document.createElement("form");
   const fieldset$$ = document.createElement("fieldset");
@@ -104,10 +106,12 @@ const pass1 = () => {
         codeGenerator.stepOne = checkInput.value;
       }
     }
+
     main$$.removeChild(div$$);
     pass2();
   });
 };
+
 const pass2 = () => {
   const div$$ = document.createElement("div");
   const paragraphIntro$$ = document.createElement("p");
@@ -140,13 +144,13 @@ const pass2 = () => {
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
+  arrow$$.src = "./assets/images/arrow-right-thin.png";
+  arrow$$.alt = "arrow-right";
 
   const alternativesList$$ = document.createElement("form");
   const fieldset$$ = document.createElement("fieldset");
-
-  alternativesList$$.appendChild(fieldset$$);
-
   alternativesList$$.classList.add("form--list");
+  alternativesList$$.appendChild(fieldset$$);
 
   for (let i = 0; i < alternatives.length; i++) {
     const input$$ = document.createElement("input");
@@ -177,14 +181,13 @@ const pass2 = () => {
   main$$.appendChild(div$$);
 
   const checkInputs$$ = document.querySelectorAll("input");
-  console.log(checkInputs$$);
-  console.log(codeGenerator);
   button$$.addEventListener("click", () => {
     for (const checkInput of checkInputs$$) {
       if (checkInput.checked == true) {
         codeGenerator.stepTwo = checkInput.value;
       }
     }
+
     main$$.removeChild(div$$);
     generateCode();
     pass2_2();
@@ -197,7 +200,6 @@ const generateCode = () => {
   const regex = /[b-zB-Z0-9]/g;
   let second = codeGenerator.stepTwo.match(regex);
   second = second.join("").slice(-4).toUpperCase();
-  console.log("hola", second);
 
   let result = first + second;
 
@@ -224,7 +226,6 @@ const pass2_2 = () => {
   const copyButton$$ = document.createElement("button");
 
   const timerDiv$$ = document.createElement("div");
-  const svg$$ = document.createElement("svg");
   const timer$$ = document.createElement("p");
 
   wrapper$$.classList.add("form--wrapper");
@@ -237,20 +238,16 @@ const pass2_2 = () => {
   copyButton$$.textContent = "Copiar";
   timerDiv$$.classList.add("timer--div");
   timer$$.textContent = "20:00";
-//   timer$$.setAttribute("id", "timer")
   button$$.classList.add("form--button");
   buttonText$$.textContent = "Ir a siroko.com";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
+  arrow$$.src = "./assets/images/arrow-right-thin.png";
+  arrow$$.alt = "arrow-right";
 
   copyButton$$.addEventListener("click", () => {
     navigator.clipboard.writeText(codeText$$.textContent);
   });
-
-
-
-  
-
 
   wrapper$$.appendChild(p$$);
   codeDiv$$.appendChild(codeText$$);
@@ -258,7 +255,6 @@ const pass2_2 = () => {
   wrapper$$.appendChild(codeDiv$$);
   wrapper$$.appendChild(p2$$);
   arrowDiv$$.appendChild(arrow$$);
-  timerDiv$$.appendChild(svg$$);
   timerDiv$$.appendChild(timer$$);
   wrapper$$.appendChild(timerDiv$$);
   button$$.appendChild(buttonText$$);
@@ -267,49 +263,49 @@ const pass2_2 = () => {
   div$$.appendChild(wrapper$$);
   main$$.appendChild(div$$);
 
-//   let count = document.getElementById("timer")
-  
-
   let minutes = 20;
   let seconds = 0;
 
   let interval = setInterval(function () {
-
     if (minutes > 0 && seconds === 0) {
-        minutes -= 1;
-        seconds = 59;
-    } else if( minutes === 0 && seconds === 0){
-        clearInterval(interval)
-        timer$$.textContent = "Código caducado"
-        const span$$ = document.createElement("span");
-        timerDiv$$.appendChild(span$$)
-        span$$.textContent = "Reiniciar";
+      minutes -= 1;
+      seconds = 59;
+    } else if (minutes === 0 && seconds === 0) {
 
-        span$$.addEventListener("click", () =>{
+      clearInterval(interval);
+      timer$$.textContent = "";
 
-            main$$.removeChild(div$$);
-            Object.keys(generateCode).forEach(element => {
-                delete generateCode[element]
-            });
-            pass1()
-            
-        })
-    }else {
-        seconds--;
+      const timerImg$$ = document.createElement("img");
+      timerImg$$.src = "./assets/images/stopwatch-svgrepo-com.svg";
+      timerImg$$.alt = "timer";
+      timer$$.textContent = "Código caducado";
+      timerDiv$$.appendChild(timerImg$$);
+
+      const span$$ = document.createElement("span");
+      timerDiv$$.appendChild(span$$);
+      span$$.textContent = "Reiniciar";
+
+      span$$.addEventListener("click", () => {
+        main$$.removeChild(div$$);
+        Object.keys(generateCode).forEach((element) => {
+          delete generateCode[element];
+        });
+        pass1();
+      });
+    } else {
+      seconds--;
     }
-    if(minutes < 10 ){
-        timer$$.classList.add("red")
+
+    if (minutes < 10) {
+      timer$$.classList.add("red");
     }
-    console.log(minutes + ":" + seconds);
-    timer$$.textContent = `${minutes.toString().padStart(2, "00")}:${seconds.toString().padStart(2, "00")}`;
+
+    timer$$.textContent = `${minutes.toString().padStart(2, "00")}:${seconds
+      .toString()
+      .padStart(2, "00")}`;
   }, 1000);
-
-
-  
-  //   button$$.addEventListener("click", () => {
-  //     generateCode();
-  //   });
 };
+
 const init = () => {
   renderLogo();
   renderFooter();
