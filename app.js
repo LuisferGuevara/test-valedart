@@ -4,8 +4,8 @@ const renderLogo = () => {
   const divLogo$$ = document.createElement("div");
   const Logo$$ = document.createElement("img");
 
-  divLogo$$.classList.add("logo-box");
-  Logo$$.classList.add("logo-img");
+  divLogo$$.classList.add("logo--box");
+  Logo$$.classList.add("logo--img");
   Logo$$.src = "./assets/images/SK Iso.png";
 
   divLogo$$.appendChild(Logo$$);
@@ -25,7 +25,8 @@ const renderFooter = () => {
   footerParagraph2$$.appendChild(footerBasesLink$$$);
   footer$$.appendChild(footerParagraph$$);
   footer$$.appendChild(footerParagraph2$$);
-  document.body.appendChild(footer$$);
+  main$$.appendChild(footer$$)
+//   document.body.appendChild(footer$$);
 };
 
 let codeGenerator = {};
@@ -36,11 +37,12 @@ const pass1 = () => {
   const h1$$ = document.createElement("h1");
   const h2$$ = document.createElement("h2");
 
+  div$$.classList.add("component--container")
+  paragraphIntro$$.classList.add("paragraph--intro")
   paragraphIntro$$.textContent = "paso 1 de 2";
   h1$$.textContent = "¡VAMOS ALLÁ!";
-  h2$$.classList.add("first--paragraph");
   h2$$.textContent =
-    "Has llegado hasta el test de Siroko. Responde las sigueinte preguntas y genera tu código premiado a medida";
+    "Has llegado hasta el test de Siroko. Responde las sigueinte preguntas y genera tu código premiado a medida.";
 
   div$$.appendChild(paragraphIntro$$);
   div$$.appendChild(h1$$);
@@ -62,14 +64,13 @@ const pass1 = () => {
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  arrow$$.src = "./assets/images/arrow-right-thin.png";
+  arrow$$.src = "./assets/images/arrow-right-thin.svg";
   arrow$$.alt = "arrow-right";
 
   const datesList$$ = document.createElement("form");
   const fieldset$$ = document.createElement("fieldset");
 
   datesList$$.appendChild(fieldset$$);
-  datesList$$.classList.add("form--list");
 
   for (let i = 0; i < dates.length; i++) {
     const input$$ = document.createElement("input");
@@ -84,6 +85,9 @@ const pass1 = () => {
 
     if (i === 0) {
       input$$.checked = true;
+    }
+    if (input$$.checked == true){
+        label$$.classList.add("checked")
     }
 
     label$$.appendChild(input$$);
@@ -117,6 +121,7 @@ const pass2 = () => {
   const paragraphIntro$$ = document.createElement("p");
   const h1$$ = document.createElement("h1");
 
+  div$$.classList.add("component--container")
   paragraphIntro$$.textContent = "paso 2 de 2";
   h1$$.textContent = "¡VAMOS, UNA MÁS!";
 
@@ -149,7 +154,6 @@ const pass2 = () => {
 
   const alternativesList$$ = document.createElement("form");
   const fieldset$$ = document.createElement("fieldset");
-  alternativesList$$.classList.add("form--list");
   alternativesList$$.appendChild(fieldset$$);
 
   for (let i = 0; i < alternatives.length; i++) {
@@ -210,6 +214,7 @@ const pass2_2 = () => {
   const div$$ = document.createElement("div");
   const h1$$ = document.createElement("h1");
 
+  div$$.classList.add("component--container")
   h1$$.textContent = "¡ENHORABUENA!";
 
   div$$.appendChild(h1$$);
