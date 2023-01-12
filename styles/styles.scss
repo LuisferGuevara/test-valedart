@@ -1,9 +1,9 @@
 @import "./_footer.scss";
-@import "./_logo.scss";
-@import "./_pass1and2.scss";
-@import "./pass2-2_3.scss";
+@import "./_pass.scss";
+@import "./_lastpass.scss";
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter:wght@700&display=swap");
+
 @font-face {
   font-family: "Liberator";
   src: url(../../assets/fonts/LiberatorSIROKO-Heavy.ttf),
@@ -19,28 +19,37 @@ body {
   box-sizing: border-box;
   background-image: url(../../assets/images/background.jpg);
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
-
+  background-attachment: fixed;
+  width: 100vw;
 }
-section {
-
-  
-
-  min-width: 100vh;
-
-
+#main {
   width: 100vw;
   position: relative;
 }
 #container {
-  // background-color: aqua;
-  
-
+  max-width: 940px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
 }
-// #footer {
-//   position: absolute;
-//   bottom: 0;
 
-
-
-// }
+.logo {
+  height: 35px;
+  width: fit-content;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  @media (min-width: 768px) {
+    &.mobile {
+      display: none;
+    }
+  }
+  @media (max-width: 767px) {
+    &.tablet {
+      display: none;
+    }
+  }
+}

@@ -4,10 +4,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-  
-    width: 95%;
+    width:  calc(100% - 20px);
     height: 49px;
-  
     background: linear-gradient(270deg, #ffffff 0%, #bdbdbd 100%);
     border-radius: 2px;
     p {
@@ -50,7 +48,7 @@
       padding: 10px 15px;
       gap: 10px;
   
-      width: 90%;
+      width:  calc(100% - 30px);
       height: 52px;
   
       background: #2c0c23;

@@ -4,13 +4,18 @@ const boxForFooter$$ = document.querySelector("#footer");
 
 const renderLogo = () => {
   const divLogo$$ = document.createElement("div");
-  const Logo$$ = document.createElement("img");
+  const logo$$ = document.createElement("img");
 
   divLogo$$.classList.add("logo--box");
-  Logo$$.classList.add("logo--img");
-  Logo$$.src = "./assets/images/SK Iso.png";
+  logo$$.classList.add("logo--img");
 
-  divLogo$$.appendChild(Logo$$);
+  // if(window.innerWidth < 767){
+  //   logo$$.src = "./assets/images/SK Iso.png";
+  // }else {
+  //   logo$$.src = "./assets/images/Vector.png";
+  // }
+  logo$$.src = window.innerWidth < 767 ? "./assets/images/logo-mobile.svg" : "./assets/images/tablet.png";
+  divLogo$$.appendChild(logo$$);
   boxForContent$$.appendChild(divLogo$$);
 };
 
@@ -49,7 +54,7 @@ const pass1 = () => {
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  arrow$$.src = "./assets/images/Right.png";
+  arrow$$.src = "./assets/images/arrow-icon.png";
   arrow$$.alt = "arrow-right";
 
   const datesList$$ = document.createElement("form");
@@ -137,7 +142,7 @@ const pass2 = () => {
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  arrow$$.src = "./assets/images/Right.png";
+  arrow$$.src = "./assets/images/arrow-icon.png";
   arrow$$.alt = "arrow-right";
 
   const alternativesList$$ = document.createElement("form");
@@ -234,14 +239,14 @@ const pass2_2 = () => {
   copyButton$$.textContent = "Copiar";
   timerDiv$$.classList.add("timer--div");
   timerImg$$.classList.add("timer--img");
-  timerImg$$.src = "./assets/images/icons8-alarm-on-24.png";
+  timerImg$$.src = "./assets/images/timer.png";
   timerImg$$.alt = "timer";
   timer$$.textContent = "20:00";
   button$$.classList.add("form--button");
   buttonText$$.textContent = "Ir a siroko.com";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  arrow$$.src = "./assets/images/Right.png";
+  arrow$$.src = "./assets/images/arrow-icon.png";
   arrow$$.alt = "arrow-right";
 
   copyButton$$.addEventListener("click", () => {
@@ -324,7 +329,7 @@ const renderFooter = () => {
   renderFooter();
 
 const init = () => {
-  renderLogo();
+  // renderLogo();
 
   pass1();
 };

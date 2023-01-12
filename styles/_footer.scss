@@ -17,6 +17,10 @@ footer {
     margin-top: 28px;
     padding: 25px;
     gap: 10px;
+    @media screen and (min-width:940px) {
+      padding-left: 20%;
+      
+    }
     a{
       color:#FFFFFF;
       text-decoration: underline;

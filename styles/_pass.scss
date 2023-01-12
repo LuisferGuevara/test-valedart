@@ -1,7 +1,12 @@
 .component--container {
-  padding: 0 25px;
-
+ width: 100%;
   min-height: 83vh;
+
+  @media only screen and (min-width: 767px){
+
+
+    
+  }
   .paragraph--intro {
     font-family: "Inter";
     font-style: normal;
