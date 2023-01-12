@@ -49,7 +49,7 @@ const pass1 = () => {
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  arrow$$.src = "./assets/images/arrow-right-thin.svg";
+  arrow$$.src = "./assets/images/Right.png";
   arrow$$.alt = "arrow-right";
 
   const datesList$$ = document.createElement("form");
@@ -137,7 +137,7 @@ const pass2 = () => {
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  arrow$$.src = "./assets/images/arrow-right-thin.png";
+  arrow$$.src = "./assets/images/Right.png";
   arrow$$.alt = "arrow-right";
 
   const alternativesList$$ = document.createElement("form");
@@ -241,7 +241,7 @@ const pass2_2 = () => {
   buttonText$$.textContent = "Ir a siroko.com";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  arrow$$.src = "./assets/images/arrow-right-thin.png";
+  arrow$$.src = "./assets/images/Right.png";
   arrow$$.alt = "arrow-right";
 
   copyButton$$.addEventListener("click", () => {
