@@ -223,6 +223,10 @@ const pass2_2 = () => {
   const codeText$$ = document.createElement("p");
   const copyButton$$ = document.createElement("button");
 
+  const timerDiv$$ = document.createElement("div");
+  const svg$$ = document.createElement("svg");
+  const timer$$ = document.createElement("p");
+
   wrapper$$.classList.add("form--wrapper");
   p$$.classList.add("form--title");
   p$$.textContent = "Lo prometido es deuda";
@@ -230,11 +234,23 @@ const pass2_2 = () => {
     "Introduce este código en tu próxima compra para conseguir tu premio. ¡Disponible durante 20 minutos!";
   codeDiv$$.classList.add("code--div");
   codeText$$.textContent = codeGenerator.finalResult;
+  copyButton$$.textContent = "Copiar";
+  timerDiv$$.classList.add("timer--div");
+  timer$$.textContent = "20:00";
+//   timer$$.setAttribute("id", "timer")
   button$$.classList.add("form--button");
   buttonText$$.textContent = "Ir a siroko.com";
   arrowDiv$$.classList.add("form--button__arrow-div");
   arrow$$.classList.add("form--button__arrow-img");
-  console.log(codeText$$);
+
+  copyButton$$.addEventListener("click", () => {
+    navigator.clipboard.writeText(codeText$$.textContent);
+  });
+
+
+
+  
+
 
   wrapper$$.appendChild(p$$);
   codeDiv$$.appendChild(codeText$$);
@@ -242,15 +258,54 @@ const pass2_2 = () => {
   wrapper$$.appendChild(codeDiv$$);
   wrapper$$.appendChild(p2$$);
   arrowDiv$$.appendChild(arrow$$);
+  timerDiv$$.appendChild(svg$$);
+  timerDiv$$.appendChild(timer$$);
+  wrapper$$.appendChild(timerDiv$$);
   button$$.appendChild(buttonText$$);
   button$$.appendChild(arrowDiv$$);
   wrapper$$.appendChild(button$$);
   div$$.appendChild(wrapper$$);
   main$$.appendChild(div$$);
 
-  const checkInputs$$ = document.querySelectorAll("input");
-  console.log(checkInputs$$);
-  console.log(codeGenerator);
+//   let count = document.getElementById("timer")
+  
+
+  let minutes = 20;
+  let seconds = 0;
+
+  let interval = setInterval(function () {
+
+    if (minutes > 0 && seconds === 0) {
+        minutes -= 1;
+        seconds = 59;
+    } else if( minutes === 0 && seconds === 0){
+        clearInterval(interval)
+        timer$$.textContent = "Código caducado"
+        const span$$ = document.createElement("span");
+        timerDiv$$.appendChild(span$$)
+        span$$.textContent = "Reiniciar";
+
+        span$$.addEventListener("click", () =>{
+
+            main$$.removeChild(div$$);
+            Object.keys(generateCode).forEach(element => {
+                delete generateCode[element]
+            });
+            pass1()
+            
+        })
+    }else {
+        seconds--;
+    }
+    if(minutes < 10 ){
+        timer$$.classList.add("red")
+    }
+    console.log(minutes + ":" + seconds);
+    timer$$.textContent = `${minutes.toString().padStart(2, "00")}:${seconds.toString().padStart(2, "00")}`;
+  }, 1000);
+
+
+  
   //   button$$.addEventListener("click", () => {
   //     generateCode();
   //   });
