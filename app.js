@@ -79,11 +79,10 @@ const pass1 = () => {
     input$$.value = dates[i];
     label$$.setAttribute("for", dates[i]);
     label$$.textContent = dates[i];
-    
+
     if (i === 0) {
-        input$$.checked = true;
-      }
-  
+      input$$.checked = true;
+    }
 
     label$$.appendChild(input$$);
     fieldset$$.appendChild(label$$);
@@ -136,7 +135,7 @@ const pass2 = () => {
 
   wrapper$$.classList.add("form--wrapper");
   p$$.classList.add("form--title");
-  p$$.textContent = "por unas gas siroko, yo...";
+  p$$.textContent = "por unas gafas siroko, yo...";
   button$$.classList.add("form--button");
   buttonText$$.textContent = "Siguiente";
   arrowDiv$$.classList.add("form--button__arrow-div");
@@ -150,7 +149,6 @@ const pass2 = () => {
   alternativesList$$.classList.add("form--list");
 
   for (let i = 0; i < alternatives.length; i++) {
-    // const element = dates[i];
     const input$$ = document.createElement("input");
     const label$$ = document.createElement("label");
 
@@ -187,10 +185,76 @@ const pass2 = () => {
         codeGenerator.stepTwo = checkInput.value;
       }
     }
-    console.log(codeGenerator);
+    main$$.removeChild(div$$);
+    generateCode();
+    pass2_2();
   });
 };
 
+const generateCode = () => {
+  let firstSlice = codeGenerator.stepOne.slice(-2).split("");
+  let first = firstSlice.reduce((a, b) => Number(a) + Number(b), 0);
+  const regex = /[b-zB-Z0-9]/g;
+  let second = codeGenerator.stepTwo.match(regex);
+  second = second.join("").slice(-4).toUpperCase();
+  console.log("hola", second);
+
+  let result = first + second;
+
+  codeGenerator.finalResult = result;
+};
+
+const pass2_2 = () => {
+  const div$$ = document.createElement("div");
+  const h1$$ = document.createElement("h1");
+
+  h1$$.textContent = "¡ENHORABUENA!";
+
+  div$$.appendChild(h1$$);
+  const wrapper$$ = document.createElement("div");
+  const p$$ = document.createElement("p");
+  const p2$$ = document.createElement("p");
+  const button$$ = document.createElement("button");
+  const buttonText$$ = document.createElement("a");
+  const arrowDiv$$ = document.createElement("div");
+  const arrow$$ = document.createElement("img");
+
+  const codeDiv$$ = document.createElement("div");
+  const codeText$$ = document.createElement("p");
+  const copyButton$$ = document.createElement("button");
+
+  wrapper$$.classList.add("form--wrapper");
+  p$$.classList.add("form--title");
+  p$$.textContent = "Lo prometido es deuda";
+  p2$$.textContent =
+    "Introduce este código en tu próxima compra para conseguir tu premio. ¡Disponible durante 20 minutos!";
+  codeDiv$$.classList.add("code--div");
+  codeText$$.textContent = codeGenerator.finalResult;
+  button$$.classList.add("form--button");
+  buttonText$$.textContent = "Ir a siroko.com";
+  arrowDiv$$.classList.add("form--button__arrow-div");
+  arrow$$.classList.add("form--button__arrow-img");
+  console.log(codeText$$);
+
+  wrapper$$.appendChild(p$$);
+  codeDiv$$.appendChild(codeText$$);
+  codeDiv$$.appendChild(copyButton$$);
+  wrapper$$.appendChild(codeDiv$$);
+  wrapper$$.appendChild(p2$$);
+  arrowDiv$$.appendChild(arrow$$);
+  button$$.appendChild(buttonText$$);
+  button$$.appendChild(arrowDiv$$);
+  wrapper$$.appendChild(button$$);
+  div$$.appendChild(wrapper$$);
+  main$$.appendChild(div$$);
+
+  const checkInputs$$ = document.querySelectorAll("input");
+  console.log(checkInputs$$);
+  console.log(codeGenerator);
+  //   button$$.addEventListener("click", () => {
+  //     generateCode();
+  //   });
+};
 const init = () => {
   renderLogo();
   renderFooter();
