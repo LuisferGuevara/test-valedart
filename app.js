@@ -18,7 +18,7 @@ const renderFooter = () => {
   const footerParagraph2$$ = document.createElement("p");
   const footerBasesLink$$$ = document.createElement("a");
 
-  footerParagraph$$.textContent = "2016-2021 Siroko Solutions S.L";
+  footerParagraph$$.textContent = "2016-2021 Siroko Solutions S.L.";
   footerParagraph2$$.textContent = "Todos los derechos reservados. ";
   footerBasesLink$$$.textContent = "Ver bases";
 
